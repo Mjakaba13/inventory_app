@@ -42,7 +42,7 @@ export default {
 /* Styling for the left side */
 .left {
   background: #F5F7FC;
-  width: 33%;
+  width: 467px;
 }
 
 .left h1 {
@@ -107,6 +107,10 @@ export default {
   line-height: 150%;
   color: #FFFFFF;
   margin-bottom: 16px;
+}
+
+.left button:hover {
+  cursor: pointer;
 }
 
 .left-child {
