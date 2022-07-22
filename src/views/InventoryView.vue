@@ -3,7 +3,7 @@
         <userBoard></userBoard>
         <div class="right-side">
             <nav>
-                <div class="user">MA</div>
+                <div class="user">AM</div>
                 <h1>Akaba Malcolm</h1>
             </nav>
             <div class="main">

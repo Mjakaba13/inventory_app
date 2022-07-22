@@ -1,16 +1,18 @@
 import { createRouter, createWebHistory } from "vue-router";
+import jwt_decode from "jwt-decode";
+
 import SignupView from "../views/SignupView.vue";
 import DashboardView from "@/views/DashBoard.vue";
 import InventoryView from "@/views/InventoryView.vue";
 
 const routes = [
   {
-    path: "/",
+    path: "/signup",
     name: "Signup",
     component: SignupView,
   },
   {
-    path: "/login",
+    path: "/",
     name: "Login",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
@@ -22,11 +24,13 @@ const routes = [
     path: "/dashboard",
     name: "Dashboard",
     component: DashboardView,
+    meta: { requiresAuth: true },
   },
   {
     path: "/inventory",
     name: "Inventory",
     component: InventoryView,
+    meta: { requiresAuth: true },
   },
 ];
 
@@ -35,4 +39,24 @@ const router = createRouter({
   routes,
 });
 
+router.beforeEach((to, from) => {
+  const token = localStorage.getItem("token");
+  let loggedIn = false;
+  if (token) {
+    const decoded = jwt_decode(token);
+    const expiryDate = new Date(decoded.exp * 1000);
+    const now = new Date();
+    if (now < expiryDate) loggedIn = true;
+  }
+  if (to.meta.requiresAuth && !loggedIn) {
+    return "/";
+  }
+
+  // return true or nothing: navigation is valid
+  // return false: breaks navigation
+  // return route: redirects to that route
+});
+
 export default router;
+ 
+ 

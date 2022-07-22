@@ -9,8 +9,7 @@
         <hr>
         <p>Sign in to start managing your inventory like a boss.</p>
         <loginform></loginform>
-        <button>Login</button>
-        <h2>Don’t have an account?<router-link to="/"> Sign up</router-link>
+        <h2>Don’t have an account?<router-link to="/signup"> Sign up</router-link>
         </h2>
       </div>
     </div>
@@ -42,7 +41,7 @@ export default {
 /* Styling for the left side */
 .left {
   background: #F5F7FC;
-  width: 33%;
+  width: 467px;
 }
 
 .left h1 {
@@ -87,31 +86,7 @@ export default {
   color: #000000;
 }
 
-.left button {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 0px;
-  gap: 10px;
-  width: 100%;
-  height: 56px;
-  background: #873AB6;
-  box-shadow: 0px 16px 24px rgba(38, 86, 209, 0.2);
-  border-radius: 8px;
-  border: none;
-  font-family: 'Lato';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 150%;
-  color: #FFFFFF;
-  margin-bottom: 16px;
-}
 
-.left button:hover {
-  cursor: pointer;
-}
 
 .left-child {
   width: 76%;

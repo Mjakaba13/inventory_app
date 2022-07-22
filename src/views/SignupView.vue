@@ -9,8 +9,7 @@
         <hr>
         <p>Register now and start managing your inventory like a boss</p>
         <signupform></signupform>
-        <button>Sign up</button>
-        <h2>Already have an account? <router-link to="/login">Login</router-link>
+        <h2>Already have an account? <router-link to="/">Login</router-link>
         </h2>
       </div>
     </div>
@@ -24,6 +23,7 @@
 <script>
 // @ is an alias to /src
 import signupform from '@/components/SignupForm.vue'
+
 export default {
   name: 'SignupView',
   components: {
@@ -87,31 +87,7 @@ export default {
   color: #000000;
 }
 
-.left button {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 0px;
-  gap: 10px;
-  width: 100%;
-  height: 56px;
-  background: #2656D1;
-  box-shadow: 0px 16px 24px rgba(38, 86, 209, 0.2);
-  border-radius: 8px;
-  border: none;
-  font-family: 'Lato';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 150%;
-  color: #FFFFFF;
-  margin-bottom: 16px;
-}
 
-.left button:hover {
-  cursor: pointer;
-}
 
 .left-child {
   width: 76%;
