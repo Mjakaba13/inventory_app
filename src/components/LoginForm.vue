@@ -31,16 +31,16 @@ export default {
   methods: {
     async signIn() {
       if (this.email.trim() !== '' && this.password !== '') {
-        const response = await axios.post("https://enyata-inventory.herokuapp.com/api/v1/auth/login", {
+        const response = await axios.post("http://localhost:8081/api/login", {
           "email": this.email,
           "password": this.password,
         })
         this.email = ''
         this.password = ''
         console.log(response)
-        if (response.data.message === 'Login successful') {
-          localStorage.setItem("token", response.data.data.token);
-          console.log(Object.keys(response.data.data.user));
+        if (response.data.message === 'User login successful') {
+          localStorage.setItem("id", response.data.data._id);
+          // console.log(Object.keys(response.data.data.user));
           this.$router.push('/dashboard');
           console.log(response.data.message)
           this.isLoggedin = true

@@ -12,7 +12,7 @@
                     <div class="top">
                         <input type="text" name="" id="search" placeholder="Search product by name">
                         <div class="top-right">
-                            <button id="product">Add Product</button>
+                            <button id="product" @click="addProd">Add Product</button>
                             <img src="@/assets/Frame29.svg" alt="">
                         </div>
                     </div>
@@ -25,33 +25,20 @@
                             <th>Status</th>
                             <th>Category</th>
                         </tr>
-                        <tr>
+                        <tr v-for="product in AllProducts" :key="product">
                             <td><input id="check" type="checkbox"></td>
-                            <td>Milo sachet</td>
-                            <td>36</td>
-                            <td>2</td>
+                            <td>{{ product.name }}</td>
+                            <td>{{ product.quantity }}</td>
+                            <td>{{ product.unitPrice }}</td>
                             <td>
-                                <div>In-stock</div>
+                                <div>{{ product.productStatus }}</div>
                             </td>
-                            <td>Beverage</td>
-                        </tr>
-                        <tr>
-                            <td><input id="check" type="checkbox"></td>
-                            <td>Ideal Milk - 160g</td>
-                            <td>0</td>
-                            <td>5.5</td>
-                            <td>Out of stock</td>
-                            <td>Beverage</td>
-                        </tr>
-                        <tr>
-                            <td><input id="check" type="checkbox"></td>
-                            <td>Kleesoft Washing Powder</td>
-                            <td>3</td>
-                            <td>2.5</td>
-                            <td>Reorder level</td>
-                            <td>Detergents</td>
+                            <td>{{ product.category }}</td>
                         </tr>
                     </table>
+
+
+
                     <div class="bottom">
                         <div class="egg">
                             <img src="@/assets/prev.svg" alt="">
@@ -70,19 +57,73 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
+        <form action="#" :style="[toggle ? { display: 'none' } : { display: 'block' }]">
+            <input type="text" placeholder="Product name...." v-model="productName">
+            <input type="text" placeholder="quantity...." v-model="quantity">
+            <input type="text" placeholder="unit price...." v-model="unitPrice">
+            <input type="text" placeholder="Status...." v-model="status">
+            <input type="text" placeholder="Category...." v-model="category">
+            <button id="soso" @click="createProduct">SUBMIT</button>
+        </form>
     </div>
 </template>
 
 <script>
 import userBoard from '@/components/UserBoard.vue'
+import axios from "axios"
 
 export default {
     name: 'Inventory',
     components: {
         userBoard
+    },
+    data() {
+        return {
+            productName: "",
+            quantity: "",
+            unitPrice: "",
+            status: "",
+            category: "",
+            AllProducts: null,
+            toggle: true
+        }
+    },
+    async created() {
+        await this.products()
+    },
+    methods: {
+        addProd() {
+            this.toggle = !this.toggle
+        },
+        async createProduct() {
+            const id = localStorage.getItem("id")
+            const response = await axios.post("http://localhost:8081/api/products/add", {
+                "id": id,
+                "name": this.productName,
+                "quantity": this.quantity,
+                "unitPrice": this.unitPrice,
+                "productStatus": this.status,
+                "category": this.category
+            })
+            console.log(response)
+        },
+        async products() {
+            const id = localStorage.getItem("id")
+            const response = await axios.post("http://localhost:8081/api/products", {
+                "id": id
+            })
+
+            console.log(response)
+            this.AllProducts = response.data.data
+            console.log(this.AllProducts)
+        }
+    },
+    computed: {
     }
+
 }
 </script>
 
@@ -91,6 +132,7 @@ export default {
     height: 100vh;
     display: flex;
     width: 100%;
+    position: relative;
 }
 
 .right-side {
@@ -155,12 +197,9 @@ h2 {
     margin-bottom: 16px;
 }
 
-/* .main {
-    background-color: rgb(89, 85, 85);
-
-} */
 
 .tab-wrap {
+    /* position: relative; */
     display: flex;
     flex-direction: column;
     /* align-items: center; */
@@ -225,18 +264,7 @@ th {
     text-align: left;
 }
 
-/* .header {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 4px 24px;
-    gap: 114px;
 
-    width: 560px;
-    height: 56px;
-
-    background: #F9F9F9;
-} */
 .bottom {
     display: flex;
     flex-direction: row;
@@ -305,5 +333,31 @@ h5 {
     font-size: 16px;
     line-height: 150%;
     color: #000000;
+}
+
+/* .main {
+    position: relative;
+} */
+
+form {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+}
+
+form input {
+    display: block;
+    padding: 10px;
+    width: 200%;
+    margin-top: 5%;
+    border-radius: 8px;
+    border: none;
+    box-shadow: 5px 5px 5px 5px #A7AEBB;
+    outline: none;
+
+}
+
+#soso {
+    margin-top: 10px;
 }
 </style>

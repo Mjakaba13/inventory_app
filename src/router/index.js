@@ -47,13 +47,14 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from) => {
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("id");
   let loggedIn = false;
   if (token) {
-    const decoded = jwt_decode(token);
-    const expiryDate = new Date(decoded.exp * 1000);
-    const now = new Date();
-    if (now < expiryDate) loggedIn = true;
+    // const decoded = jwt_decode(token);
+    // const expiryDate = new Date(decoded.exp * 1000);
+    // const now = new Date();
+    // if (now < expiryDate)
+    loggedIn = true;
   }
   if (to.meta.requiresAuth && !loggedIn) {
     return "/";

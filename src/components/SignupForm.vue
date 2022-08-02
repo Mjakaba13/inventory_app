@@ -44,12 +44,12 @@ export default {
     methods: {
         async signUp() {
             if (this.fullName.trim() !== '') {
-                const response = await axios.post("https://enyata-inventory.herokuapp.com/api/v1/auth/signup", {
+                const response = await axios.post("http://localhost:8081/api/user/create", {
                     "fullName": this.fullName,
                     "email": this.email,
                     "shopName": this.shopName,
                     "password": this.password,
-                    "confirmPassword": this.confirmPassword
+                    // "confirmPassword": this.confirmPassword
                 })
                 console.log(response)
             }
