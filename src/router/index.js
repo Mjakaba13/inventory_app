@@ -4,6 +4,7 @@ import jwt_decode from "jwt-decode";
 import SignupView from "../views/SignupView.vue";
 import DashboardView from "@/views/DashBoard.vue";
 import InventoryView from "@/views/InventoryView.vue";
+import AccountView from "@/views/AccountSetting.vue";
 
 const routes = [
   {
@@ -32,6 +33,12 @@ const routes = [
     component: InventoryView,
     meta: { requiresAuth: true },
   },
+  {
+    path: "/accountsetting",
+    name: "Account",
+    component: AccountView,
+    meta: { requiresAuth: true },
+  },
 ];
 
 const router = createRouter({
@@ -58,5 +65,3 @@ router.beforeEach((to, from) => {
 });
 
 export default router;
- 
- 

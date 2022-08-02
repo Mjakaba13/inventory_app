@@ -21,10 +21,12 @@
                     <img src="@/assets/category.svg" alt="">
                     <p>Categories</p>
                 </div>
-                <div id="link">
-                    <img src="@/assets/sett.svg" alt="">
-                    <p>Account Settings</p>
-                </div>
+                <router-link to="/accountsetting">
+                    <div id="link">
+                        <img src="@/assets/sett.svg" alt="">
+                        <p>Account Settings</p>
+                    </div>
+                </router-link>
             </div>
             <div class="log">
                 <h1>Logout</h1>
@@ -53,10 +55,11 @@ export default {
 
 <style scoped>
 .whole-side {
+    /* position: sticky; */
     background: #151923;
     /* width: 100%; */
     width: 320px;
-    /* height: 100vh; */
+    height: 100vh;
 }
 
 p {
@@ -108,10 +111,10 @@ a {
 .down {
     display: flex;
     flex-direction: column;
-    /* align-items: flex-start; */
-    justify-content: space-between;
+    align-items: flex-start;
+    /* justify-content: space-between; */
     padding-left: 32px;
-    gap: 400px;
+    gap: 30vh;
     /* height: 719px; */
     width: 320px;
     margin-top: 80px;

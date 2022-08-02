@@ -88,7 +88,7 @@ export default {
 
 <style scoped>
 .whole {
-    /* height: 100vh; */
+    height: 100vh;
     display: flex;
     width: 100%;
 }
@@ -96,7 +96,7 @@ export default {
 .right-side {
     /* width: 100%; */
     width: 77.8%;
-    /* height: 100vh; */
+    height: 100vh;
 }
 
 .user {
@@ -167,7 +167,7 @@ h2 {
     padding: 48px 32px 0px 32px;
     gap: 8px;
     width: 91%;
-    height: 644px;
+    /* height: 644px; */
     background: #FFFFFF;
     box-shadow: 0px 4px 8px -4px rgba(0, 0, 0, 0.05);
     border-radius: 4px;

@@ -46,6 +46,7 @@ export default {
 .whole {
     /* height: 100vh; */
     display: flex;
+    
 }
 
 .right-side {
